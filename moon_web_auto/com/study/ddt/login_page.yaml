@@ -1,0 +1,65 @@
+#电商项目用例
+loginPage :
+  -
+    title : 登录用例
+    description : 登录失败的用例
+    cases :
+      -
+        name : 打开登录页面
+        method : geturl
+        url : http://testingedu.com.cn:8000/index.php/Home/user/login.html
+      
+      -
+        name : 输入用户名
+        method : input
+        locator : //*[@id="username"]
+        value : 13800138006
+      
+      -
+        name : 输入用户名密码
+        method : input
+        locator : //*[@id="password"]
+        value : 1234567
+      
+      -
+        name : 输入验证码
+        method : input
+        locator : //*[@id="verify_code"]
+        value : 7777
+      
+      -
+        name : 点击登录按钮
+        method : click
+        locator : //a[contains(text(),"登")]
+  
+  -
+    title : 登录用例
+    description : 登录成功的用例
+    cases :
+      -
+        name : 打开登录页面
+        method : geturl
+        url : http://testingedu.com.cn:8000/index.php/Home/user/login.html
+      
+      -
+        name : 输入用户名
+        method : input
+        locator : //*[@id="username"]
+        value : 13800138006
+      
+      -
+        name : 输入用户名密码
+        method : input
+        locator : //*[@id="password"]
+        value : 123456
+      
+      -
+        name : 输入验证码
+        method : input
+        locator : //*[@id="verify_code"]
+        value : 7777
+      
+      -
+        name : 点击登录按钮
+        method : click
+        locator : //a[contains(text(),"登")]

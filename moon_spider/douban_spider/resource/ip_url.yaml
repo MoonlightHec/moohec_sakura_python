@@ -1,0 +1,20 @@
+66免费代理网 :
+  -
+    url_p1 : http://www.66ip.cn/areaindex_
+    url_p2 : /1.html
+    page_list : [1,10,1]
+云代理 :
+  -
+    url_p1 : http://www.ip3366.net/?stype=5&page=
+    url_p2 : ' '
+    page_list : [1,11,1]
+快代理 :
+  -
+    url_p1 : https://www.kuaidaili.com/free/inha/
+    url_p2 : /
+    page_list : [1,10,1]
+小铭代理 :
+  -
+    url_p1 : http://www.xsdaili.cn/dayProxy/ip/2737.html
+    url_p2 : ' '
+    page_list : [1,2,1]
