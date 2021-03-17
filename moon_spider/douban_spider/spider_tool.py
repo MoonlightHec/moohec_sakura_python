@@ -19,9 +19,7 @@ from requests import TooManyRedirects
 from moon_spider.douban_spider.requestAttr import requestAttr
 from moon_util import sort_yaml
 
-ip_url_path = 'resource/ip_url.yaml'  # ip网站配置
 ip_pool_path = './ip_pools.yaml'  # ip池
-ip_useful_path = './pro_useful.yaml'  # 可用ip
 
 
 def random_useragent():
@@ -41,6 +39,7 @@ def ip_filter(url, headers):
     测试代理ip是否可用
     :return:
     """
+    ip_useful_path = './pro_useful.yaml'  # 可用ip
     pro_list = sort_yaml.ordered_yaml_load(ip_pool_path)
     # 可用ip储存位置
     if os.path.exists(ip_useful_path):
@@ -116,7 +115,9 @@ def get_pools_threads(url_name):
     :param url_name:网站名称
     :return:
     """
+    # ip_pool_path = './ip_pools.yaml'
     # 读取网站配置
+    ip_url_path = 'resource/ip_url.yaml'
     with open(ip_url_path, 'r', encoding='utf-8') as r:
         ip_info = yaml.safe_load(r)
     url1 = ip_info[url_name][0]['url_p1']

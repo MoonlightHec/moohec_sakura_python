@@ -66,10 +66,10 @@ def main():
         # 获取代理ip池
         get_pools_threads('云代理')
         # 校验可用ip
-        url_filter = "https://movie.douban.com/top250?start="
-        headers_filter = random_useragent()
-        headers_filter.setdefault('Host', 'movie.douban.com')
-        ip_filter(url_filter, headers_filter)
+        # url_filter = "https://movie.douban.com/top250?start="
+        # headers_filter = random_useragent()
+        # headers_filter.setdefault('Host', 'movie.douban.com')
+        # ip_filter(url_filter, headers_filter)
 
     # 获取ip代理集合
     with open('./pro_useful.yaml', 'r', encoding='utf8') as stream:

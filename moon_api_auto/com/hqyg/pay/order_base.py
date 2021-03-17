@@ -11,7 +11,7 @@ from moon_util.cursor_util import db
 
 cursor = db.get_cursor('PPS')
 # 查询订单信息(order_sn,paySn)
-data = ('CR2103050313168166', '')
+data = ('U2103162119443049', '')
 sql_par = {}
 print(
     "id    parent_trade_sn        trade_sn               parent_order_sn      pay_sn                   site_code  pay_status \t")
