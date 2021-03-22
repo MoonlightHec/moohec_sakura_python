@@ -9,6 +9,10 @@ from moon_api_auto.pytest_util.HttpUtils import HttpRequest
 
 
 def get_after_risk():
+    """
+    oms推送事后风控信息到支付
+    :return:
+    """
     url = 'http://10.40.2.62:2087/gateway/'
     headers = {"Content-Type": "application/json"}
     pay_sn = 'P210315013287190346GMN'

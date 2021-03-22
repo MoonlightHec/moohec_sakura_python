@@ -9,9 +9,10 @@
 # 链接数据库
 from moon_util.cursor_util import db
 
-cursor = db.get_cursor('PPS')
+connect = db.get_cursor('PPS')
+cursor = connect.cursor()
 # 查询订单信息(order_sn,paySn)
-data = ('U2103162119443049', '')
+data = ('21031500910515041750', '')
 sql_par = {}
 print(
     "id    parent_trade_sn        trade_sn               parent_order_sn      pay_sn                   site_code  pay_status \t")
@@ -32,3 +33,5 @@ for index in range(1, 64):
         print("支付状态pay_status(0-未支付 1-处理中 2-已支付 3-退款中 4-退款成功 5退款失败 6支付失败)")
         print("所在库：%s" % table_num)
         print('共查找出', cursor.rowcount, '条数据')
+cursor.close()
+connect.close()

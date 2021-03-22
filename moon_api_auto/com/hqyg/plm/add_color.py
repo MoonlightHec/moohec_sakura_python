@@ -11,7 +11,7 @@ import time
 from moon_api_auto.pytest_util.HttpUtils import HttpRequest
 
 
-def color_change_select():
+def color_add_select():
     """
     添加加色款
     :return:
@@ -118,5 +118,5 @@ def pdm_receive_edit():
 
 
 if __name__ == '__main__':
-    color_change_select()
+    color_add_select()
     # pdm_receive_edit()

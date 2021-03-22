@@ -34,4 +34,4 @@ def get_cursor(database, path='/db_hqyg_config.yaml'):
         charset=charset
     )
     # 获取游标
-    return connect.cursor()
+    return connect
