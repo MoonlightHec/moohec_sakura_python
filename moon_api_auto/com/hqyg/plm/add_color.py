@@ -8,7 +8,7 @@
 import json
 import time
 
-from moon_api_auto.pytest_util.HttpUtils import HttpRequest
+from moon_api_auto.pytest_util.http_utils import HttpRequest
 
 
 def color_add_select():

@@ -5,7 +5,7 @@
 # @File : risk_after_oms.py
 # @desc : oms推送事后风控结果
 """
-from moon_api_auto.pytest_util.HttpUtils import HttpRequest
+from moon_api_auto.pytest_util.http_utils import HttpRequest
 
 
 def get_after_risk():
@@ -15,11 +15,10 @@ def get_after_risk():
     """
     url = 'http://10.40.2.62:2087/gateway/'
     headers = {"Content-Type": "application/json"}
-    pay_sn = 'P210315013287190346GMN'
+    pay_sn = 'P210408013287142350TRB'
     data = {
         "header": {
             "service": "com.globalegrow.risk.api.core.RiskCoreService",
-
             "method": "afterRiskProcessor",
             "domain": "",
             "version": "1.0.0",

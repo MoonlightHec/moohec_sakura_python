@@ -12,7 +12,6 @@ import requests
 
 
 class HttpRequest:
-
     @staticmethod
     def get(url, headers=None, params=None):
         """
@@ -52,7 +51,7 @@ class HttpRequest:
             ensure_ascii：unicode转中文
             """
             preview = json.dumps(response.json(), sort_keys=False, indent=4, separators=(',', ':'), ensure_ascii=False)
-            output = {'request': url, 'response': response.json(), 'preview': preview}
+            output = {'request': url, 'body': body, 'response': response.json(), 'preview': preview}
             return output
         except JSONDecodeError:
             return {'request': url, 'response': response}

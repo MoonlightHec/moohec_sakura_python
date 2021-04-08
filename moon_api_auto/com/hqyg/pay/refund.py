@@ -7,7 +7,7 @@
 """
 import random
 
-from moon_api_auto.pytest_util.HttpUtils import HttpRequest
+from moon_api_auto.pytest_util.http_utils import HttpRequest
 
 
 def refund():
@@ -17,10 +17,13 @@ def refund():
     """
     url = 'http://10.40.2.62:2087/gateway/'
     headers = {"Content-Type": "application/json"}
-    amount = 4.4
+
     source_id = 'TKSQ2018070422' + str(random.randint(100000, 999999))
-    order_sn = '21031600951415257870'
-    pay_sn = 'P210316009514152639U79'
+    order_sn = 'U2103310153210841'
+    pay_sn = 'P2103310132871751190ES'
+    siteCode = 'ZF'
+    currencyRate = 1.0000000000
+    amount = 14.12
     data = {
         "header": {
             "service": "com.globalegrow.spi.pay.inter.RefundService",
@@ -37,13 +40,13 @@ def refund():
                 "channelCode": "checkout_credit",
                 "currencyAmount": amount,
                 "currencyCode": "USD",
-                "currencyRate": 1.0000000000,
+                "currencyRate": currencyRate,
                 "omsTxId": pay_sn,
                 "paySn": pay_sn
             }],
             "refundType": 0,
             "remark": "一级原因:客户原因退款,二级原因:忘记使用折扣码",
-            "siteCode": "ZF",
+            "siteCode": siteCode,
             "sourceId": source_id,
             "userEmail": "lijun7@globalegrow.com",
             "userId": 188265
