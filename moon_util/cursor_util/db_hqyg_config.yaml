@@ -1,12 +1,19 @@
 #数据库连接配置
-PPS :
+PPS_old:
     host : 10.40.6.150
     port : 3306
     user : java-service
     passwd : java123456
     db : pay
     charset : utf8
-    
+PAY:
+    host : 10.38.2.72
+    port : 3306
+    user : java-service
+    passwd : java123456
+    db : pay
+    charset : utf8
+
 PLM :
     host : 192.168.0.202
     port : 3306
