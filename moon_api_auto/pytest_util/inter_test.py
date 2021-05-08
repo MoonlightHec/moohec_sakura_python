@@ -5,7 +5,7 @@
 # @File : inter_test.py
 # @desc :
 """
-from moon_util.pytest_util import HttpRequest
+from moon_api_auto.pytest_util.http_utils import HttpRequest
 
 
 def headers_test():

@@ -52,7 +52,7 @@ class initApm:
 
 
 if __name__ == '__main__':
-    connect = db.get_cursor('PLM')
+    connect = db.get_connect('PLM')
     cursor = connect.cursor()
     initApm = initApm(cursor, 4)
 

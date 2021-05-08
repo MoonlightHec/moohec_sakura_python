@@ -6,6 +6,7 @@
 # @desc :
 """
 import json
+import logging
 from json import JSONDecodeError
 
 import requests
@@ -41,6 +42,7 @@ class HttpRequest:
             response = requests.post(url, headers=headers, cookies=cookies, data=body)
         else:
             print("请求参数格式不支持")
+            return
         try:
             """
             处理接口返回数据
@@ -55,3 +57,15 @@ class HttpRequest:
             return output
         except JSONDecodeError:
             return {'request': url, 'response': response}
+
+    @staticmethod
+    def file(url, headers=None, cookies=None, img=None):
+        with open(img['path'] + img['name'], 'rb') as stream:
+            body = {
+                'file': (img['name'], stream, img['type'])
+            }
+            response = requests.post(url=url, headers=headers, cookies=cookies, files=body)
+        preview = json.dumps(response.json(), sort_keys=False, indent=4, separators=(',', ':'), ensure_ascii=False)
+        output = {'request': url, 'body': body, 'response': response.json(), 'preview': preview}
+        logging.info(output.get('response'))
+        return output

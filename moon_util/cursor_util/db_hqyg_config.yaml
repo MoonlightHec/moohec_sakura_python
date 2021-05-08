@@ -1,5 +1,5 @@
 #数据库连接配置
-PPS_old:
+PAY_old:
     host : 10.40.6.150
     port : 3306
     user : java-service

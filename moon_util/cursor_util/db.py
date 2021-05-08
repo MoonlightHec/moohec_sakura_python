@@ -12,7 +12,7 @@ import pymysql
 from moon_util import sort_yaml
 
 
-def get_cursor(database, path='/db_hqyg_config.yaml'):
+def get_connect(database, path='/db_hqyg_config.yaml'):
     # 获取当前文件db.py绝对路径
     db_path = os.path.dirname(os.path.abspath(__file__))
     datas = sort_yaml.ordered_yaml_load(db_path + path)

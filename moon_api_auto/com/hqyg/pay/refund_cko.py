@@ -96,15 +96,23 @@ def refund_cko(method=1, refund_type=0):
         print('------------------------------------------------------------------------------------')
 
 
-def get_case_datas(pay_gateway_id=31, pay_id=0):
+def get_case_datas(pay_gateway_id=31, pay_id_list=None):
+    """
+    获取订单信息
+    :param pay_gateway_id: 订单所在gateway分表序号
+    :param pay_id_list: 数据主键id
+    :return:
+    """
+
+    str_id = ','.join(pay_id_list)
     sql = 'SELECT id,parent_order_sn,pay_status,pay_sn,pay_account,site_code,currency_code,pay_amount,channel_code,' \
           'currency_code,currency_rate,pay_currency_amount,user_id FROM pay_gateway_%s WHERE id IN(%s);'
-    connect = db.get_cursor('PAY')
+    connect = db.get_connect('PAY')
     cursor = connect.cursor()
-    cursor.execute(sql % (pay_gateway_id, pay_id))
+    cursor.execute(sql, (pay_gateway_id, str_id))
     if cursor.rowcount:
         row_data = []
-        for row in cursor.fetchall():
+        for i, row in cursor.fetchall():
             case_yaml = {
                 'des': row[5],
                 'order_sn': row[1],
@@ -131,5 +139,4 @@ def get_case_datas(pay_gateway_id=31, pay_id=0):
                 sort_yaml.ordered_yaml_dump(case_data, stream, allow_unicode=True)
 
 
-get_case_datas(pay_id=61636)
-refund_cko(method=1, refund_type=0)
+get_case_datas(pay_id_list=['54571', '54572'])

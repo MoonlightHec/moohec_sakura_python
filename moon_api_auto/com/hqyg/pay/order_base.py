@@ -9,7 +9,7 @@
 # 链接数据库
 from moon_util.cursor_util import db
 
-connect = db.get_cursor('PAY')
+connect = db.get_connect('PAY')
 cursor = connect.cursor()
 # 查询订单信息(order_sn,paySn)
 data = ('LA2103312305321968', '')

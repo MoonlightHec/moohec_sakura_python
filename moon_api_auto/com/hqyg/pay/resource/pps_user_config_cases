@@ -1,0 +1,43 @@
+select_cases :
+  -
+    method : queryUserConfig
+    assert_method : assert_select
+    body :
+      id : 5
+      isNew : True
+    assert :
+      config_key : None
+      site_code : None
+  -
+    method : queryUserConfig
+    assert_method : assert_select
+    body :
+      id : 5
+      isNew : False
+    assert :
+      config_key : soa_switch_3ds_program
+      site_code : GB
+delete :
+  -
+    method : deleteUserConfig
+    body :
+      id : 1
+      logInfo :
+        userId : 1
+        userName : lijun
+        ip : 10.33.2.245
+      isNew : true
+
+add :
+  -
+    method : addUserConfig
+    body :
+      id : 1
+      isNew : true
+
+update :
+  -
+    method : updateUserConfig
+    body :
+      id : 1
+      isNew : true
