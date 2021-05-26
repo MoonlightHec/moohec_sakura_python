@@ -6,36 +6,40 @@
 # @desc : 新增样品开发数据
 """
 import json
-import logging
 import random
 
 from moon_api_auto.pytest_util.http_utils import HttpRequest
 from moon_util.cursor_util import db
 
-logging.basicConfig(format='%(asctime)s - [line:%(lineno)d] - %(levelname)s: %(message)s', datefmt='%Y-%m-%d %H:%M:%S', level=logging.INFO)
 
-
-def save_sample(status=0):
+def save_sample(status=0, method='submit', token='BD34957AD50041FEB5C11ABCE855DB3C'):
+    """
+    新增样品开发数据
+    :param token:
+    :param method:
+    :param status:
+    :return:
+    """
     # 上传图片
     img_url = 'http://plm.hqygou.com:8088/sample/develop/image/upload'
-    img_headers = {
-        'PLM-TOKEN': '41F0DEF90252484D88CEEBDDD190E9BD',
+    sample_url = 'http://plm.hqygou.com:8088/sample/develop/draft/' + method
+    headers = {
+        'PLM-TOKEN': token,
     }
     img_name = '{}.jpg'.format(str(random.randint(1, 51)))
     img = {
         'name': img_name,
         'path': 'C:/Users/Administrator/Desktop/PLM图片/',
         'type': 'image/jpeg'}
-    res = HttpRequest.file(url=img_url, headers=img_headers, img=img)
+    res = HttpRequest.file(url=img_url, headers=headers, img=img)
+    if not res.get('response')['success']:
+        print("token过期")
+        return
     img_id = res.get('response')['data']['id']
+    print('images:%s' % img_id)
 
-    # 保存样品开发
-    save_url = 'http://plm.hqygou.com:8088/sample/develop/draft/submit'
-    save_headers = {
-        'PLM-TOKEN': '41F0DEF90252484D88CEEBDDD190E9BD',
-        'Content-Type': 'application/json'
-    }
-
+    # 提交样品开发
+    headers.update({'Content-Type': 'application/json'})
     # 请求json放在save_sample中
     with open('./resource/save_sample', 'r', encoding='utf8') as stream:
         data = json.load(stream)
@@ -44,14 +48,22 @@ def save_sample(status=0):
         data['imageEditOutVos'][0]['name'] = img_name
         data['imageEditOutVos'][0]['url'] = "http://plm.hqygou.com:8088/image/downLoad?imageId={}".format(img_id)
         data['imageIds'] = img_id
-    res = HttpRequest.post(url=save_url, headers=save_headers, body=data)
-    logging.info(res.get('response'))
+    res = HttpRequest.post(url=sample_url, headers=headers, body=data)
     print(res.get('response'))
-    if res == 200 and status:
+    if type == 'update':
+        return
+    if res.get('response')['success']:
         update_status(status=status, images=img_id)
 
 
-def update_status(status=0, sample_code=0, images=0):
+def update_status(status=0, sample_code=None, images=0):
+    """
+    修改样品开发状态
+    :param status: 样品状态
+    :param sample_code: 样品编码
+    :param images: 图片id
+    :return:
+    """
     connect = db.get_connect('PLM')
     cursor = connect.cursor()
     param = 0
@@ -67,6 +79,5 @@ def update_status(status=0, sample_code=0, images=0):
 
 
 if __name__ == '__main__':
-    # save_sample(status=2)
-    update_status(status=1, sample_code='Y2113003303')
-
+    save_sample(status=1, token='8097271D4A8F4DBEA19C0CE35D236E04')
+    # update_status(status=1, sample_code='Y2113003328')

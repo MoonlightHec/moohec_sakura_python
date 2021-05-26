@@ -19,11 +19,11 @@ def refund():
     headers = {"Content-Type": "application/json"}
 
     source_id = 'TKSQ2018070422' + str(random.randint(100000, 999999))
-    order_sn = 'ZP1808080757490237'
-    pay_sn = 'P180808007864205849104'
-    siteCode = 'RG'
-    currencyRate = 1.0000000000
-    amount = 45.84
+    order_sn = 'U2105190514262762'
+    pay_sn = 'P210519013287182139BXM'
+    siteCode = 'ZF'
+    currencyRate = 0.8103621600
+    amount = 37.38
     data = {
         "header": {
             "service": "com.globalegrow.spi.pay.inter.RefundService",
@@ -39,7 +39,7 @@ def refund():
                 "amount": amount,
                 "channelCode": "checkout_credit",
                 "currencyAmount": amount,
-                "currencyCode": "USD",
+                "currencyCode": "GBP",
                 "currencyRate": currencyRate,
                 "omsTxId": pay_sn,
                 "paySn": pay_sn

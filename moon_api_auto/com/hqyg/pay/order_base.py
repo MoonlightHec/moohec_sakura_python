@@ -12,7 +12,7 @@ from moon_util.cursor_util import db
 connect = db.get_connect('PAY')
 cursor = connect.cursor()
 # 查询订单信息(order_sn,paySn)
-data = ('LA2103312305321968', '')
+data = ('U2105200256006929', '')
 sql_par = {}
 print(
     "id    parent_trade_sn        trade_sn               parent_order_sn      pay_sn                   site_code  pay_status \t")
