@@ -32,5 +32,8 @@ def get_after_risk():
     print(response.get('preview'))
 
 
+from itertools import combinations
+
 if __name__ == '__main__':
-    get_after_risk()
+    for i in range(0,5):
+        print(list(combinations([1, 2, 3, 4, 5], i)))
