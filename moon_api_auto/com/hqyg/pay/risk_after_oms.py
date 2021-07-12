@@ -15,7 +15,7 @@ def get_after_risk():
     """
     url = 'http://10.40.2.62:2087/gateway/'
     headers = {"Content-Type": "application/json"}
-    pay_sn = 'P210408013287142350TRB'
+    pay_sn = 'P2107060132871036001II'
     data = {
         "header": {
             "service": "com.globalegrow.risk.api.core.RiskCoreService",
@@ -32,8 +32,5 @@ def get_after_risk():
     print(response.get('preview'))
 
 
-from itertools import combinations
-
 if __name__ == '__main__':
-    for i in range(0,5):
-        print(list(combinations([1, 2, 3, 4, 5], i)))
+    get_after_risk()

@@ -79,5 +79,5 @@ def update_status(status=0, sample_code=None, images=0):
 
 
 if __name__ == '__main__':
-    save_sample(status=1, token='8097271D4A8F4DBEA19C0CE35D236E04')
+    save_sample(status=1, token='ED833F98C70047A981D10F10EB066C61')
     # update_status(status=1, sample_code='Y2113003328')
