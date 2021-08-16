@@ -48,6 +48,8 @@ def save_sample(status=0, method='submit', token='BD34957AD50041FEB5C11ABCE855DB
         data['imageEditOutVos'][0]['name'] = img_name
         data['imageEditOutVos'][0]['url'] = "http://plm.hqygou.com:8088/image/downLoad?imageId={}".format(img_id)
         data['imageIds'] = img_id
+        # 4:历史延改;5:趋势延改;6:热卖延改;7:热索延改;8:竞品延改;9:时尚趋势
+        data['developVersion'] = 9
     res = HttpRequest.post(url=sample_url, headers=headers, body=data)
     print(res.get('response'))
     if type == 'update':
@@ -79,5 +81,5 @@ def update_status(status=0, sample_code=None, images=0):
 
 
 if __name__ == '__main__':
-    save_sample(status=1, token='ED833F98C70047A981D10F10EB066C61')
-    # update_status(status=1, sample_code='Y2113003328')
+    save_sample(status=9, token='D5F78D2FF0364A84903082C9156075F7')
+    # update_status(status=9, sample_code='Y2113003390')

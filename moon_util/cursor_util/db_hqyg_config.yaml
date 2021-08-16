@@ -61,3 +61,19 @@ OBS :
     passwd : fEtWqVMzBC
     db : obs_pay_base
     charset : utf8
+    
+OMS :
+    host : 10.38.2.53
+    port : 3311
+    user : oms_dev_acc
+    passwd : omsERPtest
+    db : oms
+    charset : utf8
+    
+WMS :
+    host : 10.38.2.53
+    port : 3307
+    user : wms_dev_acc
+    passwd : erpWMStest
+    db : newerp
+    charset : utf8

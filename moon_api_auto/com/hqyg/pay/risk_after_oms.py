@@ -8,14 +8,13 @@
 from moon_api_auto.pytest_util.http_utils import HttpRequest
 
 
-def get_after_risk():
+def get_after_risk(pay_sn):
     """
     oms推送事后风控信息到支付
     :return:
     """
     url = 'http://10.40.2.62:2087/gateway/'
     headers = {"Content-Type": "application/json"}
-    pay_sn = 'P2107060132871036001II'
     data = {
         "header": {
             "service": "com.globalegrow.risk.api.core.RiskCoreService",
@@ -33,4 +32,5 @@ def get_after_risk():
 
 
 if __name__ == '__main__':
-    get_after_risk()
+    for i in range(0,1):
+        get_after_risk('P210813013287165747JUW')

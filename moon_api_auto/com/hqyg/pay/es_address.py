@@ -3,7 +3,7 @@
 # @Time : 2021/2/3 11:12 
 # @Author : River 
 # @File : es_address.py
-# @desc :
+# @desc : ES灰名单
 """
 import json
 

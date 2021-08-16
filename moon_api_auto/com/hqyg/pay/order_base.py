@@ -15,7 +15,7 @@ def get_pay_info(cursor=None, data=('U2106010336010938', '')):
 
     sql_par = {}
     print(
-        "id    parent_trade_sn        trade_sn               parent_order_sn      pay_sn                   site_code  pay_status \t")
+        "id    parent_trade_sn        trade_sn               parent_order_sn      pay_sn            site_code pay_status channel_code\t")
     # 获取sql查询语句及where条件
     if data[0]:
         sql_par[0] = 'parent_order_sn'
@@ -26,13 +26,14 @@ def get_pay_info(cursor=None, data=('U2106010336010938', '')):
 
     pay_sn_list = []
     order_sn_list = []
-    for index in range(1, 64):
+    for index in range(1, 65):
         table_num = 'pay_gateway_' + str(index)
-        sql = "SELECT id,parent_trade_sn,trade_sn,parent_order_sn,pay_sn,site_code,pay_status FROM %s WHERE %s = '%s';"
+        sql = "SELECT id,parent_trade_sn,trade_sn,parent_order_sn,pay_sn,site_code,pay_status,channel_code FROM %s WHERE %s = '%s';"
         cursor.execute(sql % (table_num, sql_par[0], sql_par[1]))
         if cursor.rowcount:
             for row in cursor.fetchall():
-                print("%s %s %s %s %s      %s      %s\t" % row)
+                print("%s %s %s %s %s      %s   %s   %s\t" % row)
+                # print(row)
                 pay_sn_list.append(row[4])
                 order_sn_list.append(row[3])
             print("支付状态pay_status(0-未支付 1-处理中 2-已支付 3-退款中 4-退款成功 5退款失败 6支付失败)")
@@ -44,6 +45,6 @@ def get_pay_info(cursor=None, data=('U2106010336010938', '')):
 if __name__ == '__main__':
     connect = db.get_connect('PAY')
     cursor = connect.cursor()
-    pay_sn_lists, order_sn_lists = get_pay_info(cursor, data=('U2107042104185287', ''))
+    pay_sn_lists, order_sn_lists = get_pay_info(cursor, data=('U2108130356535344', ''))
     cursor.close()
     connect.close()

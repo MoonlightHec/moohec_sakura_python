@@ -3,7 +3,7 @@
 # @Time : 2021/5/12 9:38 
 # @Author : mhec 
 # @File : Reuters.py
-# @desc :
+# @desc : 汇率XE Reuters
 """
 import requests
 from flask import json
@@ -38,10 +38,14 @@ def get_reuters():
 
 
 def get_xe():
+    """
+    主页：https://www.xe.com/
+    :return:
+    """
     url = 'https://www.xe.com/api/protected/midmarket-converter/'
     headers = {
         "Content-Type": "application/json",
-        "authorization": "Basic bG9kZXN0YXI6REx1OHhOQ1ZrWkpSeHk3ck91R1hDQ2l2d0U2cXd4c1Q="
+        "authorization": "Basic bG9kZXN0YXI6ODlJb2puVGVyUXlYcFVUQUJLcUljcFViQU4zUnZvUTQ="
     }
     res = requests.get(url=url, headers=headers).json()
     with open('./resource/xe_rate.json', 'w') as stream:
@@ -52,4 +56,4 @@ def get_xe():
 
 
 if __name__ == '__main__':
-    get_reuters()
+    get_xe()

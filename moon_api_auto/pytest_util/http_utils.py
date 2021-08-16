@@ -22,13 +22,17 @@ class HttpRequest:
         :return:
         """
         response = requests.get(url, headers=headers, params=params)
-        preview = json.dumps(response.json(), sort_keys=False, indent=4, separators=(',', ':'), ensure_ascii=False)
-        output = {'request': url, 'response': response.json(), 'preview': preview}
+        try:
+            preview = json.dumps(response.json(), sort_keys=False, indent=4, separators=(',', ':'), ensure_ascii=False)
+            output = {'request': url, 'response': response.json(), 'preview': preview}
+        except JSONDecodeError:
+            output = response.text
         return output
 
     @staticmethod
-    def post(url, headers=None, cookies=None, body=None):
+    def post(url, headers=None, cookies=None, body=None, verify=False):
         """
+        :param verify:
         :param url: 请求地址
         :param headers: 请求头
         :param cookies:
@@ -37,9 +41,9 @@ class HttpRequest:
         """
         headers_type = headers.get("Content-Type")
         if headers_type == "application/json":
-            response = requests.post(url, headers=headers, cookies=cookies, json=body)
+            response = requests.post(url, headers=headers, cookies=cookies, json=body, verify=verify)
         elif headers_type == "application/x-www-form-urlencoded":
-            response = requests.post(url, headers=headers, cookies=cookies, data=body)
+            response = requests.post(url, headers=headers, cookies=cookies, data=body, verify=verify)
         else:
             print("请求参数格式不支持")
             return

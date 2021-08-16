@@ -1,0 +1,171 @@
+type: 2
+category[0]: 2410
+category[1]: 2411
+category[2]: 2431
+category[3]: 2441
+emergency_degree: 1
+catalog_name_show: ZAFUL/女装/连衣裙/长袖裙（Z）
+sample_type: 1
+sample_making_type: 5
+develop_website_id:
+series_id:
+recommend_type: 2
+is_exclusive: 1
+shipment_time_start:
+shipment_time_end:
+special_remarks:
+provider_monthly_sales:
+product_name: zf
+weave_type: P
+images[0]: /uploads/Maiyang/2021/07/19/20210719093740_60f4d7644bc9a.jpg
+product_url:
+is_authorize: 2
+has_video: 2
+video_remark:
+recommend_level: c
+label_group:
+season: 4
+brand_type: 2
+brand_name: 中性品牌不是的(ZHONGXINGPINPAI1)
+brand_code: B1901290016
+listing_year: 2021
+plan_online_time: 2021-07-29
+goods_name: 无
+apm_user: lijun7
+pm_user: lijun7
+purchaser:
+order_number:
+apply_remark:
+product_advantage: <p>545875278578</p>
+cloth_fields[festival_product]:
+cloth_fields[style_positioning]: 2
+cloth_fields[occasion]: 7
+cloth_fields[respective_region]: 1
+cloth_fields[style]: 3
+cloth_fields[edition_type]: 1
+cloth_fields[develop_source]: 9
+cloth_fields[design_elements]: 2
+cloth_fields[collar_type]: 1
+cloth_fields[waist_type]: 2
+cloth_fields[sleeve_type]: 1
+cloth_fields[skirt_profile]: 1
+target_sale_price:
+target_sale_price_unit: CNY
+profit_rate:
+target_cost:
+target_cost_unit: CNY
+sales_volume:
+keyword:
+main_product_skus:
+develop_gist:
+is_consult_price: 2
+developer:
+return_type:
+is_add_supplier: 1
+supplier[0][is_price_limit]: 0
+supplier[0][delivery_country_code]:
+supplier[0][cooperation_type_name]: 铺货
+supplier[0][is_system_supplier]: 1
+supplier[0][supplier_sn]: WGC0054
+supplier[0][supplier_name]: 深圳市伟易大电器有限公司
+supplier[0][sale_price_limit]:
+supplier[0][purchase_price_base]: 30
+supplier[0][purchase_price_unit]: CNY
+supplier[0][min_order]: 1
+supplier[0][delivery_average_day]: 3
+supplier[0][agent_inventory]: 500
+supplier[0][package_num]: 10
+supplier[0][expect_life_cycle]: 3
+supplier[0][wh_code][0]: SZ
+supplier[0][wh_code][1]: ZQ01
+supplier[0][wh_code][2]: ZQDZ01
+supplier[0][wh_code][3]: XCWH
+supplier[0][stock_wh_code]: BANYIWH
+supplier[0][specDatas][0][color_id]: 100377412
+supplier[0][specDatas][0][color_text]: redplm#3(红色plm#3)
+supplier[0][specDatas][0][group_name]: color_1
+supplier[0][specDatas][0][size_id]:
+supplier[0][specDatas][0][size_text]:
+supplier[0][specDatas][0][attr_size_group_id]:
+supplier[0][specDatas][0][is_price_limit]: 0
+supplier[0][specDatas][0][purchase_price_base]: 30
+supplier[0][specDatas][0][purchase_price_unit]: CNY
+supplier[0][specDatas][0][agent_inventory]: 500
+supplier[0][specDatas][0][min_order]:
+supplier[0][specDatas][0][package_num]: 10
+supplier[0][specDatas][0][expect_life_cycle]:
+supplier[0][specDatas][0][delivery_average_day]:
+supplier[0][specDatas][0][delivery_country_code]:
+supplier[0][show]: false
+supplier[0][is_same_supplier]: 1
+selSupper: 0
+colorGroup[0][group_name]: color_1
+colorGroup[0][group_color][0]: 403
+colorGroup[0][group_color][1]: 100377412_#701333_redplm#3(红色plm#3)_红色plm#3
+colorGroup[0][attr_id]: 100377412
+colorGroup[0][attr_extend]: #701333
+colorGroup[0][custom_name]: 红色plm#3
+colorGroup[0][ac_custom_name]: redplm#3(红色plm#3)
+colorGroup[0][attr_size_group_id]:
+specification[0][group_name]: color_1
+specification[0][color]: 100377412
+specification[0][custom_name]: redplm#3(红色plm#3)
+specification[0][z_custom_name]: 红色plm#3
+specification[0][attr_extend]: #701333
+specification[0][size]:
+specification[0][size_text]:
+specification[0][attr_size_group_id]:
+specification[0][sample_number]: 1
+specification[0][purchase_price_base]: 50
+specification[0][purchase_price_unit]: CNY
+specification[0][purchase_price]: 50
+specification[0][sale_price]: 50
+specification[0][goods_weight]:
+specification[0][actual_weight]:
+specification[0][goods_length]:
+specification[0][goods_width]:
+specification[0][goods_height]:
+specification[0][goods_conv_length]:
+specification[0][goods_conv_width]:
+specification[0][goods_conv_height]:
+specification[0][sale_package_length]:
+specification[0][sale_package_width]:
+specification[0][sale_package_height]:
+specification[0][sale_package_conv_length]:
+specification[0][sale_package_conv_width]:
+specification[0][sale_package_conv_height]:
+specification[0][show]: false
+supplier_remark[100377412]:
+pack_attribute: 衣服
+goods_weight: 0.5
+actual_weight: 0.56
+goods_length:
+goods_width:
+goods_height:
+sale_package_length:
+sale_package_width:
+sale_package_height:
+battery_info: []
+battery_type_all:
+character[0]: 1
+is_developer: 2
+product_develop_user:
+sampleAddUniqueToken: f0b1c5c7fbad19467b9056ac84062a8d
+source_from: 1
+departmentUnitCode: SYB0004
+authorize: [{"id":"","sale_platform":{"66":[],"68":["AU","CA","DE","ES","FR","IT","US"],"77":[],"80":["AD","AE","AF","AQ","AS","BD","BE","BF","BG","BH"],"81":["BN","BO","BR","BT","CC","CD"],"82":["HK","HM","HN","HR","HT","HU"],"83":["ZW","BL","BENL","BEFR","CAFR"],"84":["AE","AF","AT","AU","BE"],"85":["EC","EE","EG","EH","ER","ES","ET"],"86":["AD","AE","AF","AG","AI","AL","AM","AN","AO","AQ","AR","AS","AT","AU","AW","AX","AZ","BA","BB","BD","BE","BF","BG","BH","BI","BJ","BM","BN","BO","BR","BS","BT","BV","BW","BY","BZ","CA","CC","CD","CF","CG","CH","CI","CK","CL","CM","CN","CO","CR","CU","CV","CX","CY","CZ","DE","DJ","DK","DM","DO","DZ","EC","EE","EG","EH","ER","ES","ET","FI","FJ","FK","FM","FO","FR","GA","GB","GD","GE","GF","GG","GH","GI","GL","GM","GN","GP","GQ","GR","GS","GT","GU","GW","GY","HK","HM","HN","HR","HT","HU","IC","ID","IE","IL","IM","IN","IQ","IR","IS","IT","JE","JM","JO","JP","KE","KG","KH","KI","KM","KN","KP","KR","KV","KW","KY","KZ","LA","LB","LC","LI","LK","LR","LS","LT","LU"],"97":["AE","AF","BA"],"98":[],"100":["DE","ES","FR","GB","IT","JP","US"],"104":[],"107":[],"109":["AE","AF","AG"],"110":[],"115":["MX"],"116":["ID"],"200":["CA","DE","FR","MX","US"]},"country_acronym":["AD","AE","AF","AG","AI","AL","AM","AN","AO","AQ","AR","AS","AT","AU","AW","AX","AZ","BA","BB","BD","BE","BF","BG","BH","BI","BJ","BL","BM","BN","BO","BR","BS","BT","BV","BW","BY","BZ","CA","CC","CD","CF","CG","CH","CI","CK","CL","CM","CN","CO","CR","CU","CV","CX","CY","CZ","DE","DJ","DK","DM","DO","DZ","EC","EE","EG","EH","ER","ES","ET","FI","FJ","FK","FM","FO","FR","GA","GB","GD","GE","GF","GG","GH","GI","GL","GM","GN","GP","GQ","GR","GS","GT","GU","GW","GY","HK","HM","HN","HR","HT","HU","IC","ID","IE","IL","IM","IN","IQ","IR","IS","IT","JE","JM","JO","JP","KE","KG","KH","KI","KM","KN","KP","KR","KV","KW","KY","KZ","LA","LB","LC","LI","LK","LR","LS","LT","LU","LV","LY","MA","MC","MD","ME","MF","MG","MH","MK","ML","MM","MN","MO","MP","MQ","MR","MS","MT","MU","MV","MW","MX","MY","MZ","NA","NC","NE","NF","NG","NI","NL","NO","NP","NR","NU","NZ","OM","PA","PE","PF","PG","PH","PK","PL","PM","PN","PR","PS","PT","PW","PY","QA","RE","RO","RS","RU","RW","SA","SB","SC","SD","SE","SG","SH","SI","SJ","SK","SL","SM","SN","SO","SP","SR","SS","ST","SV","SY","SZ","TA","TC","TD","TG","TH","TJ","TK","TL","TM","TN","TO","TR","TT","TV","TW","TZ","UA","UG","US","UY","UZ","VA","VC","VE","VG","VI","VN","VU","WF","WS","XB","XC","XD","XE","XH","XI","XJ","XK","XM","XN","XS","XY","YE","YT","ZA","ZM","ZW"]}]
+sample_size_chart[size_chart_id]:
+sample_size_chart[row_num]: 0
+sample_size_chart[col_num]: 0
+sample_size_chart[standard_size_chart_id]:
+sample_desc_attr[attr_template_id]:
+shoot_schedule_detail[0][color_id]: 100377412
+shoot_schedule_detail[0][size_id]:
+shoot_schedule_detail[0][shoot_way]: 1
+shoot_schedule_detail[0][shoot_style]: 3
+shoot_schedule_detail[0][shoot_item]: 1
+shoot_schedule_detail[0][schedule_id]: 787
+shoot_schedule_detail[0][schedule_time]: 20210722
+shoot_schedule_detail[0][schedule_remark]:
+material_name[2]: 20
+material_name[3]: 80
