@@ -168,10 +168,10 @@ def get_data(pay_sn=None):
 
 if __name__ == '__main__':
     # 新数据差异
-    # get_data(pay_sn='P210813013287165747JUW')
+    get_data(pay_sn='P210817013489103850X7Z')
     # 清空数据
     # empty_data('pay_risk_event')
     # 历史数据差异
     # run_task()
     # 历史数据数量
-    sum_datas('pay_risk_event')
+    # sum_datas('pay_risk_event')

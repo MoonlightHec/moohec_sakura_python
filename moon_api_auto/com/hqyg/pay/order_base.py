@@ -45,6 +45,6 @@ def get_pay_info(cursor=None, data=('U2106010336010938', '')):
 if __name__ == '__main__':
     connect = db.get_connect('PAY')
     cursor = connect.cursor()
-    pay_sn_lists, order_sn_lists = get_pay_info(cursor, data=('U2108130356535344', ''))
+    pay_sn_lists, order_sn_lists = get_pay_info(cursor, data=('U2108172032443766', ''))
     cursor.close()
     connect.close()

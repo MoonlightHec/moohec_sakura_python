@@ -33,4 +33,4 @@ def get_after_risk(pay_sn):
 
 if __name__ == '__main__':
     for i in range(0,1):
-        get_after_risk('P210813013287165747JUW')
+        get_after_risk('P210818013287093319V')
