@@ -8,9 +8,7 @@
 import requests
 from flask import json
 
-from moon_api_auto.com.hqyg.pay.checkout_order import checkout_order
 from moon_api_auto.pytest_util.http_utils import HttpRequest
-
 # 禁用安全警告信息；requests忽略ssl证书后，控制台不再输出警告信息
 from moon_util.cursor_util import db
 
@@ -80,7 +78,7 @@ def match_order(order_sn='21042300987314514995'):
 if __name__ == '__main__':
     oms_order_sn = 'U2108152109413287'
     # MQ推送订单到oms
-    # push_mq(oms_order_sn)
+    push_mq(oms_order_sn)
     # 审核付款单
     # audit_payment(oms_order_sn)
     # 匹配订单
