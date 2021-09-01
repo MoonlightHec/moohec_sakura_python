@@ -8,6 +8,7 @@
 
 # 链接数据库
 from moon_util.cursor_util import db
+from moon_util.cursor_util.DbTools import DbTools
 
 
 def get_pay_info(cursor=None, data=('U2106010336010938', '')):
@@ -43,8 +44,8 @@ def get_pay_info(cursor=None, data=('U2106010336010938', '')):
 
 
 if __name__ == '__main__':
-    connect = db.get_connect('PAY')
-    cursor = connect.cursor()
-    pay_sn_lists, order_sn_lists = get_pay_info(cursor, data=('U2108172032443766', ''))
-    cursor.close()
-    connect.close()
+    db = DbTools('PAY')
+    connect = db.connect
+    cursor = db.cursor
+    pay_sn_lists, order_sn_lists = get_pay_info(cursor, data=('U2108292258366118', ''))
+    del db
