@@ -7,13 +7,12 @@
 """
 
 # 链接数据库
-from moon_util.cursor_util import db
 from moon_util.cursor_util.DbTools import DbTools
 
 
-def get_pay_info(cursor=None, data=('U2106010336010938', '')):
+def get_pay_info(db, data=('U2106010336010938', '')):
     # 查询订单信息(order_sn,paySn)
-
+    cursor = db.cursor
     sql_par = {}
     print(
         "id    parent_trade_sn        trade_sn               parent_order_sn      pay_sn            site_code pay_status channel_code\t")
@@ -40,12 +39,9 @@ def get_pay_info(cursor=None, data=('U2106010336010938', '')):
             print("支付状态pay_status(0-未支付 1-处理中 2-已支付 3-退款中 4-退款成功 5退款失败 6支付失败)")
             print("所在表：%s" % table_num)
             print('共查找出', cursor.rowcount, '条数据')
+    del db
     return pay_sn_list, order_sn_list
 
 
 if __name__ == '__main__':
-    db = DbTools('PAY')
-    connect = db.connect
-    cursor = db.cursor
-    pay_sn_lists, order_sn_lists = get_pay_info(cursor, data=('U2108292258366118', ''))
-    del db
+    get_pay_info(DbTools('PAY'), data=('U2108163065410801', ''))

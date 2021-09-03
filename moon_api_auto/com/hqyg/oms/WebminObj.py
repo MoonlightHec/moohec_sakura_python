@@ -69,5 +69,5 @@ class WebminObj:
 
 
 if __name__ == '__main__':
-    web_script = WebminObj('match_payment_info')
-    web_script.run_script('20092400941522369351')
+    web_script = WebminObj('match_payment_info_nopay')
+    web_script.run_script('U2108310352544644S001')

@@ -39,21 +39,21 @@
         "state": "Bayern",
         "telephone": "01522113356"
       },
-      "orderAmount": "27.04",
+      "orderAmount": "52.04",
       "orderCurrencyAmount": null,
       "orderGoodsInfos": [
         {
-          "catName": "Beach Tops",
-          "catalogue": "Swimwear > Cover Ups > Beach Tops",
-          "categoryId": "115",
+          "catName": "Bags",
+          "catalogue": "Accessories > Bags",
+          "categoryId": "33",
           "categoryName": "Swimwear",
           "goodsExponent": null,
-          "goodsSn": "267571202",
+          "goodsSn": "148786003",
           "operationType": null,
-          "price": "26.99",
+          "price": "51.99",
           "qty": "1",
           "shopCode": null,
-          "title": "Pom Poms Slash Neck Smocked Beach Top"
+          "title": "Zipper Embossing Argyle Satchel"
         }
       ],
       "orderSn": "U2108162111547939",
@@ -66,7 +66,7 @@
     }
   ],
   "parentOrderSn": "U2108162111547939",
-  "payAmount": "27.04",
+  "payAmount": "52.04",
   "payCurrencyAmount": null,
   "payExtendsInfoDto": null,
   "pipelineCode": "ZF",
