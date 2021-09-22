@@ -12,22 +12,16 @@ from flask import json
 requests.packages.urllib3.disable_warnings()
 
 
-def get_oms_webmin_headers():
+def get_headers(url, data):
     """
-    获取带cookies的headers
+    获取headers
+    :param url:
+    :param data:
     :return:
     """
-    url = 'https://10.60.34.197:8100/session_login.cgi'
     headers = {
         "Cookie": "testing=1; sid=x"
     }
-    data = {
-        "page": "/",
-        "user": "oms",
-        "pass": "aTb8R3Rm2G9",
-        "save": 1
-    }
-
     # 获取cookies
     res = requests.post(url=url, headers=headers, data=data, verify=False, allow_redirects=False)
     cookiejar = res.cookies
@@ -36,22 +30,59 @@ def get_oms_webmin_headers():
     return headers
 
 
+def get_oms_webmin_headers():
+    """
+    获取oms带cookies的headers
+    :return:
+    """
+    url = 'https://10.60.34.197:8100/session_login.cgi'
+    data = {
+        "page": "/",
+        "user": "oms",
+        "pass": "aTb8R3Rm2G9",
+        "save": 1
+    }
+    return get_headers(url, data)
+
+
+def get_sms_webmin_headers():
+    """
+    获取sms带cookies的headers
+    :return:
+    """
+    url = 'https://10.60.48.185:8100/session_login.cgi'
+    data = {
+        "page": "/",
+        "user": "www",
+        "pass": "9z4BXFjt3A4Kcg==",
+    }
+    return get_headers(url, data)
+
+
 class WebminObj:
-    def __init__(self, script_name):
-        self.headers = get_oms_webmin_headers()
-        self.headers['Referer'] = 'https://10.60.34.197:8100/cron/edit_cron.cgi'
-        self.save_url = 'https://10.60.34.197:8100/cron/save_cron.cgi'
+    def __init__(self, app_name='oms', script_name=None):
+        switcher = {
+            'oms': get_oms_webmin_headers,
+            'sms': get_sms_webmin_headers,
+        }
+        app_name = app_name.lower()
+        self.headers = switcher.get(app_name)()
+
         # 获取脚本通用参数
         with open('./resource/webmin_script_data.json', 'r', encoding='utf-8') as data_stream:
             self.data = json.load(data_stream)
         # 获取要执行的脚本参数
         with open('./resource/webmin_args.json', 'r', encoding='utf8') as params_stream:
-            self.params = json.load(params_stream)[script_name]
-        self.execute_url = 'https://10.60.34.197:8100/cron/exec_cron.cgi?idx={}'
+            request_info = json.load(params_stream)[app_name]
+            self.params = request_info[script_name]
+            self.headers['Referer'] = request_info['config']['Referer']
+            self.data['idx'] = request_info['config']['idx']
+            self.data['user'] = request_info['config']['user']
+            self.save_url = request_info['config']['save_url']
+            self.execute_url = request_info['config']['execute_url'].format(self.data['idx'])
 
     def run_script(self, *args):
         # 获取要执行的脚本参数
-        self.data['idx'] = 1191
         self.data['comment'] = self.params['comment']
         self.data['cmd'] = self.params['cmd'].format(*args)
         # 禁止重定向，否则重定向到/cron/exec_cron.cgi后，执行会因为没有cookie导致执行脚本报权限不足
@@ -59,15 +90,19 @@ class WebminObj:
         save_res = requests.get(url=self.save_url, headers=self.headers, params=self.data, verify=False, allow_redirects=False)
         if save_res.status_code == 302:
             print("\n----------------------------保存成功----------------------------")
-
-        # 执行脚本
-        print("\n----------------------------开始执行脚本----------------------------")
-        exec_res = requests.get(url=self.execute_url.format(1191), headers=self.headers, verify=False)
-        print(exec_res.text)
-        with open('./resource/webmin_script_result.html', 'w', encoding='utf-8') as fd:
-            fd.write(exec_res.text)
+            # 执行脚本
+            print("\n----------------------------开始执行脚本----------------------------")
+            exec_res = requests.get(url=self.execute_url, headers=self.headers, verify=False)
+            print(exec_res.text)
+            with open('./resource/webmin_script_result.html', 'w', encoding='utf-8') as fd:
+                fd.write(exec_res.text)
+        else:
+            print("\n----------------------------脚本保存失败----------------------------")
 
 
 if __name__ == '__main__':
-    web_script = WebminObj('match_payment_info_nopay')
-    web_script.run_script('U2108310352544644S001')
+    web_script = WebminObj(app_name='oms', script_name='推送异常到wos')
+    try:
+        web_script.run_script()
+    except IndexError:
+        print("参数个数错误")

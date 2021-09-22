@@ -1,7 +1,7 @@
 # _*_ coding: utf-8 _*_
 """
 # @Time : 2021/1/26 16:59 
-# @Author : River 
+# @Author : lijun7
 # @File : order_base.py
 # @desc : 查询订单信息
 """
@@ -10,8 +10,9 @@
 from moon_util.cursor_util.DbTools import DbTools
 
 
-def get_pay_info(db, data=('U2106010336010938', '')):
+def get_pay_info(data=('U2106010336010938', '')):
     # 查询订单信息(order_sn,paySn)
+    db = DbTools('PAY')
     cursor = db.cursor
     sql_par = {}
     print(
@@ -36,7 +37,7 @@ def get_pay_info(db, data=('U2106010336010938', '')):
                 # print(row)
                 pay_sn_list.append(row[4])
                 order_sn_list.append(row[3])
-            print("支付状态pay_status(0-未支付 1-处理中 2-已支付 3-退款中 4-退款成功 5退款失败 6支付失败)")
+            print("支付状态pay_status(0-未支付 1-处理中 2-已支付 3-退款中 4-退款成功 5退款失败 6支付失败 7部分退款)")
             print("所在表：%s" % table_num)
             print('共查找出', cursor.rowcount, '条数据')
     del db
@@ -44,4 +45,4 @@ def get_pay_info(db, data=('U2106010336010938', '')):
 
 
 if __name__ == '__main__':
-    get_pay_info(DbTools('PAY'), data=('U2108163065410801', ''))
+    get_pay_info(data=('U2108163227742601', ''))

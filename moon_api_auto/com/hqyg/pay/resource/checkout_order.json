@@ -29,6 +29,7 @@
       "logisticsMethod": "Standard Shipping",
       "orderAddressInfo": {
         "addressLine1": "Hellersbergstraße 14",
+        "addressLine2": "addressLine2",
         "city": "ADELSHOFEN",
         "countryCode": "DE",
         "countryName": "Germany",
@@ -39,21 +40,21 @@
         "state": "Bayern",
         "telephone": "01522113356"
       },
-      "orderAmount": "52.04",
+      "orderAmount": "32.04",
       "orderCurrencyAmount": null,
       "orderGoodsInfos": [
         {
-          "catName": "Bags",
-          "catalogue": "Accessories > Bags",
-          "categoryId": "33",
-          "categoryName": "Swimwear",
+          "catName": "Jackets & Coats",
+          "catalogue": "Women > Tops > Jackets & Coats",
+          "categoryId": "8",
+          "categoryName": "Women",
           "goodsExponent": null,
-          "goodsSn": "148786003",
+          "goodsSn": "274304601",
           "operationType": null,
-          "price": "51.99",
+          "price": "31.99",
           "qty": "1",
           "shopCode": null,
-          "title": "Zipper Embossing Argyle Satchel"
+          "title": "ZAFUL Zip Up Two Tone Windbreaker Jacket"
         }
       ],
       "orderSn": "U2108162111547939",
@@ -66,7 +67,7 @@
     }
   ],
   "parentOrderSn": "U2108162111547939",
-  "payAmount": "52.04",
+  "payAmount": "32.04",
   "payCurrencyAmount": null,
   "payExtendsInfoDto": null,
   "pipelineCode": "ZF",

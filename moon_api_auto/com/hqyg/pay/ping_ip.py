@@ -3,7 +3,7 @@
 # @Time : 2021/8/18 9:59 
 # @Author : lijun7 
 # @File : ping_ip.py
-# @desc :
+# @desc : cdn迁移ping ip地址
 """
 import os
 import re
