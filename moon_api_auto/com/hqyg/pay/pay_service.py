@@ -83,6 +83,7 @@ class PayService:
         case_data = get_case_datas(pay_sn=pay_sn)
         if refunds_amount:
             case_data['currency_amount'] = refunds_amount
+            case_data['amount'] = refunds_amount / case_data['currency_rate']
         body = {
             "orderSn": case_data['order_sn'],
             "refundAccountId": 2359975,
@@ -138,4 +139,4 @@ class PayService:
 
 if __name__ == '__main__':
     pay = PayService()
-    pay.refunds(pay_sn='P2109220132871036254K5', refunds_amount=17)
+    pay.refunds(pay_sn='P210922013287173008EAB', refunds_amount=20)

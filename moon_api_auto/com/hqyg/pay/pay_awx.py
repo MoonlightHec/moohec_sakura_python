@@ -5,12 +5,9 @@
 # @File : pay_awx.py
 # @desc :
 """
-import uuid
 
 import requests
 from flask import json
-
-from moon_util.cursor_util.DbTools import DbTools
 
 
 class AWX_Test:
@@ -29,8 +26,6 @@ class AWX_Test:
             "Authorization": "Bearer {}".format(self.login()),
             "Content-Type": "application/json",
         }
-        with open('./resource/awx_info.json', 'r', encoding='utf-8') as awx_st:
-            self.awx_api_info = json.load(awx_st)
 
     def login(self):
         url = '{}/api/v1/authentication/login?api_key={}&client_id={}'.format(self.allDomains['paDomain'], self.client['apiKey'], self.client['clientId'])
@@ -43,71 +38,6 @@ class AWX_Test:
         token = res.json().get('token')
         # print("login token:\n{}".format(token))
         return token
-
-    def create_payment(self, need_3ds=False):
-        """
-        create请求
-        :param need_3ds:
-        :return:
-        """
-        print('创建create请求：')
-        url = '{}/api/v1/pa/payment_intents/create'.format(self.allDomains['paDomain'])
-        headers = self.headers
-        headers['x-api-version'] = "2021-02-28"
-        body = self.awx_api_info.get('create')
-        # 需要测试的参数
-        body['request_id'] = str(uuid.uuid1())
-        body['amount'] = 14314777.99
-        body['currency'] = 'USD'
-        body['merchant_order_id'] = str(uuid.uuid1())
-        body['order']['shipping']['country_code'] = 'NL'
-        body['order']['shipping']['street'] = 'addressLine1 addressLine2'
-        body['return_url'] = 'http://www.example.com'
-        # 是否3ds
-        if need_3ds:
-            body['payment_method_options']['card']['risk_params']['skip_risk_processing'] = 'true'
-            body['payment_method_options']['card']['risk_params']['three_domain_secure_action'] = 'FORCE_3DS'
-        res = requests.post(url, headers=headers, json=body)
-        return res
-
-    def confirm_payment(self, intent_id=''):
-        """
-        :param intent_id:
-        :return:
-        """
-        print('创建confirm请求：')
-        url = '{}/api/v1/pa/payment_intents/{}/confirm'.format(self.allDomains['paDomain'], intent_id)
-        headers = self.headers
-        body = self.awx_api_info.get('confirm')
-        # 需要测试的参数
-        body['request_id'] = str(uuid.uuid1())
-        # 地址信息
-        body['payment_method']['billing']['last_name'] = 'lijun'
-        body['payment_method']['billing']['address']['country_code'] = 'GB'
-        body['payment_method']['billing']['address']['street'] = 'addressLine1 addressLine2'
-        body['payment_method']['billing']['address']['state'] = 'Stirling'
-        body['payment_method']['billing']['address']['city'] = 'StirlingCity'
-        # card信息
-        body['payment_method']['card']['number'] = '4000000000001191'
-        body['payment_method']['card']['expiry_month'] = '10'
-        body['payment_method']['card']['expiry_year'] = '2031'
-        body['payment_method']['card']['cvc'] = '121'
-        body['payment_method']['card']['name'] = 'QIAO ZHAO'
-
-        res = requests.post(url, headers=headers, json=body)
-        return res
-
-    def refunds(self, amount, transaction_id):
-        url = '{}/api/v1/pa/refunds/create'.format(self.allDomains['paDomain'])
-        headers = self.headers
-        body = {
-            "payment_intent_id": transaction_id,
-            "reason": "Return good",
-            "amount": amount,
-            "request_id": str(uuid.uuid1())
-        }
-        res = requests.post(url, headers=headers, json=body)
-        return res
 
     def get_payment(self, transaction_id):
         url = '{}/api/v1/pa/payment_intents/{}'.format(self.allDomains['paDomain'], transaction_id)
@@ -127,50 +57,57 @@ class AWX_Test:
         }
         res = requests.get(url, headers=self.headers, params=params)
         if res.status_code == 200:
-            self.preview(res)
+            return res
 
     def preview(self, response):
-        print(json.dumps(response.json(), sort_keys=False, indent=4, separators=(',', ':'), ensure_ascii=False))
+        try:
+            print(json.dumps(response.json(), sort_keys=False, indent=4, separators=(',', ':'), ensure_ascii=False))
+        except AttributeError:
+            print(json.dumps(response, sort_keys=False, indent=4, separators=(',', ':'), ensure_ascii=False))
 
-    def run_create(self):
-        # 创建create
-        res_create = self.create_payment()
-        # preview(res_create)
-        if res_create.status_code == 201:
-            creat_card_info = res_create.json()['available_payment_method_types']
-            print('available_payment_method_types:\n%s' % creat_card_info)
-            if 'card' in creat_card_info:
-                payment_intent_id = res_create.json()['id']
-                print(payment_intent_id)
-        return payment_intent_id
+    def run_refunds(self, payment_intent_id='', result='SUCCEEDED', awx_refund_sn=None):
+        """
+        模拟第三方发送退款通知
+        :param payment_intent_id:
+        :param result:退款结果
+        :param awx_refund_sn: 退款id
+        :return:
+        """
+        items = self.get_refunds(payment_intent_id).json()['items']
+        if awx_refund_sn:
+            for item in items:
+                if item['metadata']['refundSn'] == awx_refund_sn:
+                    refunds_obj = item
+        else:
+            refunds_obj = items[0]
+        self.preview(refunds_obj)
+        refunds_obj['status'] = result
+        data = {
+            "accountId": "acct_xJ_pXQ3pOiOiGCkcSP0c7Q",
+            "createdAt": "2021-08-18T00:54:49+0000",
+            "data": {
+                "object": refunds_obj
+            },
+            "id": "evt_hkdmnwcv6g1iq8mc8ik_694bm8",
+            "name": "refund.succeeded",
+            "version": "2020-04-30",
+            "account_id": "acct_xJ_pXQ3pOiOiGCkcSP0c7Q",
+            "created_at": "2021-08-18T00:54:49+0000"
+        }
+        if result == 'FAILED':
+            data['name'] = 'refund.failed'
 
-    def run_confirm(self):
-        # 创建confirm
-        res_confirm = self.confirm_payment(intent_id=self.run_create())
-        if res_confirm.status_code == 200:
-            confirm_status = res_confirm.json()['status']
-            url = res_confirm.json()['next_action']['url']
-            jwt = res_confirm.json()['next_action']['data']['jwt']
-            print('confirm_status:【%s】' % confirm_status)
-            print('url:{}\njwt:{}'.format(url, jwt))
-
-    def run_refunds(self, amount, pay_sn):
-        db = DbTools('PAY')
-        sql = "SELECT transaction_id FROM pay_gateway_31  WHERE pay_sn = '%s';"
-        cursor = db.cursor
-        cursor.execute(sql % pay_sn)
-        if cursor.rowcount:
-            transaction_id = cursor.fetchone()[0]
-        del db
-        print('transaction_id:'.format(transaction_id))
-        res_refunds = self.refunds(amount, transaction_id)
-        self.preview(res_refunds)
+        url = 'http://10.40.2.52:8182/awx/notify'
+        res = requests.post(url, headers=self.headers, json=data)
+        if res.status_code == 200:
+            print('接收退款通知成功')
 
 
 if __name__ == '__main__':
-    intent_id = 'int_hkdmwnlxhg2ldekh4b3'
+    intent_id = 'int_hkdm5zz2jg2q4hr8qu1'
     awx_pay_sn = 'U2108163227423001'
+    refund_sn = 'B210923013287182905DVI'
     awx_cc = AWX_Test()
-    # awx_cc.run_refunds(amount=10, pay_sn=awx_pay_sn)
     awx_cc.get_payment(intent_id)
     # awx_cc.get_refunds(intent_id)
+    # awx_cc.run_refunds(payment_intent_id=intent_id, result='FAILED', awx_refund_sn=refund_sn)

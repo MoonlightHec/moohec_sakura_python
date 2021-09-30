@@ -101,8 +101,17 @@ class WebminObj:
 
 
 if __name__ == '__main__':
-    web_script = WebminObj(app_name='oms', script_name='推送异常到wos')
+    """
+    # 同步soa订单
+    # 地址异常生成电联工单
+    # 推送异常工单到wos
+    # 退款到原支付 param：【826:WAX_CC】
+    # 退款到电子钱包 param：退款申请编号
+    # 推送邮件队列列表到SMS param：【ticket_receive】
+    # 自动去信加入队列
+    """
+    web_script = WebminObj(app_name='oms', script_name='wos-状态同步到WOS-订单问题状态')
     try:
-        web_script.run_script()
+        web_script.run_script('U2109292222525828')
     except IndexError:
         print("参数个数错误")

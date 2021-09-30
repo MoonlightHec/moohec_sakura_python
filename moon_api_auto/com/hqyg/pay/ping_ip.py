@@ -37,7 +37,7 @@ if __name__ == '__main__':
     }
 
     cloudfront = host_dict.get('user.zaful.com')
-    ping_ip('pdm.gw-ec.com')
+    ping_ip('cashier.gearbest.com')
     # 所有站点
     # ping_ips(host_path='./resource/zf_hosts.txt', ip_path='./resource/zf_ip.txt')
     # 支付、支持中心

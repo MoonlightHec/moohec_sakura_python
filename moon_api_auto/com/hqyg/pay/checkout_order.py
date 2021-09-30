@@ -5,6 +5,7 @@
 # @File : checkout_order.py
 # @desc : 生成收银台页面
 """
+import datetime
 import time
 
 import requests
@@ -25,27 +26,28 @@ def checkout_order(country_name='美国'):
     with open('./resource/checkout_order.json', 'r', encoding='utf8') as order_stream:
         body = json.load(order_stream)
 
-    # 自动生成订单号
-    order_sn = 'U2108{}{}'.format(int(time.time()), '01')
+    # 生成订单号
+    today = datetime.datetime.strftime(datetime.datetime.now(), '%Y-%m-%d %H:%M:%S')
+    order_sn = 'U{}{}'.format(''.join(today[2:10].split('-')),int(time.time()))
 
     # 获取收货国家信息
     with open('./resource/address_book.json', 'r', encoding='utf-8') as fd:
-        address = json.load(fd)
+        address = json.load(fd)[country_name]
 
     body['orderInfos'][0]['orderSn'] = order_sn
-    body['orderInfos'][0]['orderAddressInfo']['firstName'] = address[country_name]['firstName']
-    body['orderInfos'][0]['orderAddressInfo']['lastName'] = address[country_name]['lastName']
-    body['orderInfos'][0]['orderAddressInfo']['countryCode'] = address[country_name]['countryCode']
-    body['orderInfos'][0]['orderAddressInfo']['countryName'] = address[country_name]['countryName']
-    body['orderInfos'][0]['orderAddressInfo']['state'] = address[country_name]['state']
+    body['orderInfos'][0]['orderAddressInfo']['firstName'] = address['firstName']
+    body['orderInfos'][0]['orderAddressInfo']['lastName'] = address['lastName']
+    body['orderInfos'][0]['orderAddressInfo']['countryCode'] = address['countryCode']
+    body['orderInfos'][0]['orderAddressInfo']['countryName'] = address['countryName']
+    body['orderInfos'][0]['orderAddressInfo']['state'] = address['state']
     body['orderInfos'][0]['orderAddressInfo']['addressLine1'] = 'addressLine1'
     body['orderInfos'][0]['orderAddressInfo']['addressLine2'] = 'addressLine2'
     body['orderInfos'][0]['orderAddressInfo']['city'] = 'ADELSHOFEN'
     body['orderInfos'][0]['createTime'] = int(time.time())
     body['parentOrderSn'] = order_sn
     # 需要改价格的订单
-    price = 80.59
-    currency_code = 'GBP'
+    price = 81.59
+    currency_code = 'USD'
     body['orderInfos'][0]['orderAmount'] = price
     body['orderInfos'][0]['orderGoodsInfos'][0]['price'] = round(price - 0.05, 2)
     body['payAmount'] = price
@@ -82,4 +84,4 @@ def checkout_order(country_name='美国'):
 
 
 if __name__ == '__main__':
-    checkout_order("美国reject")
+    checkout_order("美国accept")

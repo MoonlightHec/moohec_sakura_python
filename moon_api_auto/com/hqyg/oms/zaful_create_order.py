@@ -43,7 +43,6 @@ def audit_payment(order_sn):
     :param order_sn:订单号
     :return:
     """
-
     db_tools = DbTools('OMS')
     connect = db_tools.connect
     cursor = db_tools.cursor
@@ -53,15 +52,15 @@ def audit_payment(order_sn):
     del db_tools
 
 
-def match_order(match_name=None, order_sn=None):
+def webmin_job(webmin_name=None, *args):
     """
     5.匹配订单
+    :param webmin_name: 脚本名称
     :param order_sn: 订单编号
-    :param match_name: 匹配脚本名称
     :return:
     """
-    web_script = WebminObj('oms', match_name)
-    web_script.run_script(order_sn)
+    web_script = WebminObj('oms', webmin_name)
+    web_script.run_script(*args)
 
 
 def md5(string):
@@ -99,17 +98,20 @@ def joint_order_2oms(order_sn, step=0):
 
 
 if __name__ == '__main__':
-    oms_order_sn = 'U2109172215104017'
+    oms_order_sn = 'U2109292222525828'
     # 网站MQ推送订单到oms
     # push_mq(oms_order_sn, joint=False)
+
+    # oms接收订单
+    # webmin_job(webmin_name='同步soa订单')
     # 审核付款单
-    # audit_payment(oms_order_sn)
+    audit_payment(oms_order_sn)
     """
     # 匹配订单
     # match_payment_info 正常订单
     # match_payment_info_nopay cod订单
     """
-    match_order(match_name='match_payment_info', order_sn=oms_order_sn)
+    webmin_job('匹配订单', oms_order_sn)
 
     # 联合订单推送到oms
     # joint_order_2oms(oms_order_sn, step=1)
