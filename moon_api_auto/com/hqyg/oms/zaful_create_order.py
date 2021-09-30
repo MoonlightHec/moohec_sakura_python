@@ -98,9 +98,9 @@ def joint_order_2oms(order_sn, step=0):
 
 
 if __name__ == '__main__':
-    oms_order_sn = 'U2109292222525828'
+    oms_order_sn = 'U2109300401398519'
     # 网站MQ推送订单到oms
-    # push_mq(oms_order_sn, joint=False)
+    push_mq(oms_order_sn, joint=False)
 
     # oms接收订单
     # webmin_job(webmin_name='同步soa订单')
@@ -111,7 +111,7 @@ if __name__ == '__main__':
     # match_payment_info 正常订单
     # match_payment_info_nopay cod订单
     """
-    webmin_job('匹配订单', oms_order_sn)
+    # webmin_job('匹配订单', oms_order_sn)
 
     # 联合订单推送到oms
     # joint_order_2oms(oms_order_sn, step=1)

@@ -6,8 +6,8 @@
 # @desc :
 """
 import json
+
 import pika
-import datetime
 
 
 # 生成消息入口处
@@ -16,9 +16,9 @@ def get_message():
     #     message = json.dumps({'id': "10000%s" % i, "amount": 100 * i, "name": "mhec", "createTime": str(datetime.datetime.now())})
 
     with open('./resource/zf_order_info.json', 'r', encoding='utf-8') as st:
-        message2 = json.load(st)
-        message3 = json.dumps(message2)
-    producter(message3)
+        message = json.load(st)
+        message = json.dumps(message)
+    producter(message)
 
 
 # 消息生产者

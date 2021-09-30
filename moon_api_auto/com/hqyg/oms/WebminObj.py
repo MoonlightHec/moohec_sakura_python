@@ -110,8 +110,8 @@ if __name__ == '__main__':
     # 推送邮件队列列表到SMS param：【ticket_receive】
     # 自动去信加入队列
     """
-    web_script = WebminObj(app_name='oms', script_name='wos-状态同步到WOS-订单问题状态')
+    web_script = WebminObj(app_name='oms', script_name='soa_order_into_mq')
     try:
-        web_script.run_script('U2109292222525828')
+        web_script.run_script('U2109292222525828','22')
     except IndexError:
         print("参数个数错误")

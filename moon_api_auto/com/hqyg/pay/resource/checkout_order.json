@@ -21,7 +21,7 @@
       "exponent": "2",
       "handlingFee": null,
       "hasUseCoupon": "0",
-      "insuranceFee": "0.05",
+      "insuranceFee": "0.01",
       "integralDeductAmount": "0.0",
       "logisticCouponDeductAmount": null,
       "logisticsGroupName": "Standard Shipping",
